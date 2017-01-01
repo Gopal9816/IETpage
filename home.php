@@ -8,6 +8,8 @@ if (!isset($_SESSION['userSession'])) {
 
 $query = $DBcon->query("SELECT * FROM tbl_users WHERE user_id=".$_SESSION['userSession']);
 $userRow=$query->fetch_array();
+$query_next = $DBcon->query("SELECT * FROM tbl_members WHERE user_id=".$_SESSION['userSession']);
+$memRow=$query_next->fetch_array();
 $DBcon->close();
 
 ?>
@@ -33,7 +35,7 @@ $DBcon->close();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a style="font-size: 32px; text-decoration-style: -moz-none;">DASHBOARD</a>
+          <a style="font-size: 32px;">DASHBOARD</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">          
           <ul class="nav navbar-nav navbar-right">
@@ -46,7 +48,7 @@ $DBcon->close();
 
 <div class="container" style="margin-top:100px;text-align:left;font-family:Verdana, Geneva, sans-serif;">
 	<h1>WELCOME <?php echo $userRow['username'];?></h1><br /><br />
-    <p style="font-size:20px;">e-mail : <?php echo $userRow['email'];?><br />IET membership number :</p>
+    <p style="font-size:20px;">e-mail : <?php echo $userRow['email'];?><br />IET membership number : <?php echo $memRow['memno'];?> </p>
     
 </div>
 
